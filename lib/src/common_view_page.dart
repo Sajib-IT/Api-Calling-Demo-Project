@@ -8,22 +8,36 @@ class CommonViewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-          child: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ElevatedButton(
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) => ApiShowPage())),
-              child: const Text("Product Details")),
-          ElevatedButton(
-              onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (ctx) => MoviesApiShowPage())),
-              child: const Text("Movies Details")),
-        ],
-      )),
+      backgroundColor: Colors.grey.shade300,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => ApiShowPage())),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.lightBlue),
+                ),
+                child: const Text(
+                  "Product Details",
+                  style: TextStyle(color: Colors.white,fontSize: 24),
+                )),
+            SizedBox(height: 20,),
+            ElevatedButton(
+                onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute(builder: (ctx) => MoviesApiShowPage())),
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(Colors.lightBlue),
+                ),
+                child: const Text(
+                  "Movies Details",
+                  style: TextStyle(color: Colors.white,fontSize: 25),
+                )),
+          ],
+        ),
+      ),
     );
   }
 }
