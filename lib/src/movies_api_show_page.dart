@@ -1,5 +1,6 @@
 import 'package:dummy_api_call/services/api_service.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import 'movies_api_model.dart';
 
@@ -88,18 +89,35 @@ class _MoviesApiShowPageState extends State<MoviesApiShowPage> {
                                           ]))
                                 ],
                               ),
-                              Column(
-                                children: [
-                                  Text(
-                                    "Movie Link : ",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold),
-                                  )
-                                ],
+                              SizedBox(
+                                height: 25,
                               ),
-                              Text(
-                                  "Movie Link : ${snapshot.data![index].imdbUrl}")
+                              InkWell(
+                                onTap: (){
+                                  launchUrlString(snapshot.data![index].imdbUrl!,
+                                    mode: LaunchMode.inAppWebView,
+                                  );
+                                },
+                                child: RichText(
+                                    text: TextSpan(
+                                        style: TextStyle(color: Colors.black),
+                                        children: [
+                                      TextSpan(
+                                          text: "Movie Link : ",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16)),
+                                      TextSpan(
+                                          text: snapshot.data![index].imdbUrl,
+                                          style: TextStyle(
+                                              fontSize: 17,
+                                              fontStyle: FontStyle.italic,
+                                              color: Colors.blue,
+                                              decoration:
+                                                  TextDecoration.underline,
+                                              letterSpacing: 0.2)),
+                                    ])),
+                              ),
                             ],
                           ));
                     },
