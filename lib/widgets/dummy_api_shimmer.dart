@@ -2,25 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class DummyApiShimmer extends StatelessWidget {
-  const DummyApiShimmer({super.key});
+  final bool isProductApi;
+  const DummyApiShimmer({super.key, this.isProductApi = false});
 
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
       baseColor: Colors.grey.shade300,
       highlightColor: Colors.grey.shade100,
-      enabled: true,
       child: ListView.separated(
-          itemBuilder: (context, index) =>Container(
-            padding: EdgeInsets.symmetric(vertical: 12,horizontal: 2),
-            height: 110,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Colors.white
-            ),
-          ),
+          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
+          itemBuilder: (context, index) => Container(
+                height: isProductApi?300:140,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.white),
+              ),
           separatorBuilder: (context, index) => SizedBox(
-                height: 15,
+                height: 32,
               ),
           itemCount: 5),
     );

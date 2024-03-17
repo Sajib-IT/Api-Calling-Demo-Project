@@ -96,7 +96,7 @@ class _ApiShowPageState extends State<ApiShowPage> {
                           height: 32,
                         ),
                     itemCount: snapshot.data!.products!.length)
-                : const DummyApiShimmer();
+                : const DummyApiShimmer(isProductApi: true,);
           }),
       // bottomNavigationBar: ElevatedButton(
       //   onPressed: () {

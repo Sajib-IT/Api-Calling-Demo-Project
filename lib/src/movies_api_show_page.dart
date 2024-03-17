@@ -1,4 +1,5 @@
 import 'package:dummy_api_call/services/api_service.dart';
+import 'package:dummy_api_call/widgets/dummy_api_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 
@@ -24,7 +25,6 @@ class _MoviesApiShowPageState extends State<MoviesApiShowPage> {
           future: apiService.apiCallForMovies(
               url: "https://dummyapi.online/api/movies"),
           builder: (context, snapshot) {
-            print("From snapshot ${snapshot.data.runtimeType}");
             return snapshot.hasData
                 ? ListView.separated(
                     itemCount: snapshot.data!.length,
@@ -89,7 +89,7 @@ class _MoviesApiShowPageState extends State<MoviesApiShowPage> {
                                           ]))
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 25,
                               ),
                               InkWell(
@@ -100,16 +100,16 @@ class _MoviesApiShowPageState extends State<MoviesApiShowPage> {
                                 },
                                 child: RichText(
                                     text: TextSpan(
-                                        style: TextStyle(color: Colors.black),
+                                        style: const TextStyle(color: Colors.black),
                                         children: [
-                                      TextSpan(
+                                      const TextSpan(
                                           text: "Movie Link : ",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               fontSize: 16)),
                                       TextSpan(
                                           text: snapshot.data![index].imdbUrl,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               fontSize: 17,
                                               fontStyle: FontStyle.italic,
                                               color: Colors.blue,
@@ -123,11 +123,11 @@ class _MoviesApiShowPageState extends State<MoviesApiShowPage> {
                     },
                     separatorBuilder: (BuildContext context, int index) {
                       return const SizedBox(
-                        height: 15,
+                        height: 32,
                       );
                     },
                   )
-                : const Text("Null");
+                : const DummyApiShimmer();
           }),
     );
   }
